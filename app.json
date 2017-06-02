@@ -23,6 +23,14 @@
     "BT_PRIVATE_KEY": {
       "description": "Your Braintree Private Key",
       "required": true
+    },
+    "BT_CLIENT_ID": {
+      "description": "Your Braintree Private Key",
+      "required": true
+    },
+    "BT_CLIENT_SECRET": {
+      "description": "Your Braintree Private Key",
+      "required": true
     }
   }
 }

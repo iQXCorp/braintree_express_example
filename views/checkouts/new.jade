@@ -5,6 +5,8 @@ block content
     header
       h1 Hi, #[br] Let's test a transaction
       p Make a test payment with Braintree using PayPal or a card
+    a(href="/oauth")
+      img(src="https://s3-us-west-1.amazonaws.com/bt-partner-assets/connect-braintree.png" width="328" height="44")
 
     form#payment-form(action="/checkouts", method="post")
       section

@@ -5,6 +5,7 @@ var braintree = require('braintree');
 var router = express.Router(); // eslint-disable-line new-cap
 var gateway = require('../lib/gateway');
 
+
 var TRANSACTION_SUCCESS_STATUSES = [
   braintree.Transaction.Status.Authorizing,
   braintree.Transaction.Status.Authorized,
@@ -49,6 +50,24 @@ function createResultObject(transaction) {
 
 router.get('/', function (req, res) {
   res.redirect('/checkouts/new');
+});
+
+router.get('/oauth', function (req, res) {
+
+  var gateway = braintree.connect({
+    clientId: process.env.BT_CLIENT_ID,
+    clientSecret: process.env.BT_CLIENT_SECRET
+  });
+
+  var url = gateway.oauth.connectUrl({
+    redirectUri: "http://192.168.1.180:3000/checkouts/new",
+    scope: "read_write",
+    state: "foo_state",
+    landingPage: "signup",
+    paymentMethods: ["credit_card", "paypal"]
+  });
+
+  res.redirect(url);
 });
 
 router.get('/checkouts/new', function (req, res) {
